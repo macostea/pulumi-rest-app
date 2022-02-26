@@ -28,7 +28,7 @@ export function deployApp(image: docker.Image, provider: k8s.Provider, appConfig
                         ports: [{ containerPort: 3000 }],
                         env: [
                             { name: "DYNAMODB_REGION", value: appConfig.dynamoDbRegion },
-                            { name: "DYNAMODB_TABLE", value: appConfig.dynamoDbTable },
+                            { name: "DYNAMODB_TABLE_NAME", value: appConfig.dynamoDbTable },
                         ],
                     }],
                 },
