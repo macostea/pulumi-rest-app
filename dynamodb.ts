@@ -6,14 +6,6 @@ export function createDynamoDb() {
             {
                 name: "id",
                 type: "S",
-            },
-            {
-                name: "temp",
-                type: "N",
-            },
-            {
-                name: "hum",
-                type: "N",
             }
         ],
         hashKey: "id",
