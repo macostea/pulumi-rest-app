@@ -26,8 +26,5 @@ export function createAppImage() {
         build: "./app",
     });
 
-    return {
-        baseImageName: image.baseImageName,
-        fullImageName: image.imageName
-    };
-}
+    return image;
+};

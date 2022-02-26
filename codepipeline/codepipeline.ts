@@ -42,6 +42,11 @@ export function createCodePipeline(githubConnectionId: string) {
         policyArn: aws.iam.ManagedPolicies.AmazonEC2ContainerRegistryFullAccess
     });
 
+    const dynamoDbAccess = new aws.iam.RolePolicyAttachment("dynamodb-access", {
+        role: buildRole,
+        policyArn: aws.iam.ManagedPolicies.AmazonDynamoDBFullAccess
+    });
+
     const secretAccessPolicy = new aws.iam.RolePolicy("secret-access-policy", {
         role: buildRole,
         policy: pulumi.interpolate`{
