@@ -34,7 +34,7 @@ export function deployApp(image: docker.Image, provider: k8s.Provider, appConfig
                 },
             }
         }
-    });
+    }, { provider: provider });
 
     const service = new k8s.core.v1.Service("rest-app-service", {
         metadata: { labels: appLabels },
@@ -43,7 +43,7 @@ export function deployApp(image: docker.Image, provider: k8s.Provider, appConfig
             ports: [{ port: 3000, targetPort: 3000 }],
             selector: appLabels,
         }
-    });
+    }, { provider: provider });
 
     const ingress = new k8s.networking.v1.Ingress("rest-app-ingress", {
         metadata: {
@@ -74,7 +74,7 @@ export function deployApp(image: docker.Image, provider: k8s.Provider, appConfig
                 },
             ],
         }
-    });
+    }, { provider: provider });
 
     return ingress;
 };
