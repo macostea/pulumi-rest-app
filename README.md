@@ -5,7 +5,7 @@
 * Pulumi program:
   * DynamoDB Table ([/dynamodb.ts](/dynamodb.ts))
   * Build and publish container image ([/ecr.ts](/ecr.ts))
-  * Deploy app to EKS cluster ()[/eks.ts](/eks.ts)
+  * Deploy app to EKS cluster ([/eks.ts](/eks.ts))
 
 ## How it works
 ### Simple REST Api
