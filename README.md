@@ -1,7 +1,7 @@
 # Simple REST Api deployed with pulumi
 
 ## What's included
-* REST App ((/app)[/app])
+* REST App ([/app](/app))
 * Pulumi program:
   * DynamoDB Table ([/dynamodb.ts](/dynamodb.ts))
   * Build and publish container image ([/ecr.ts](/ecr.ts))
