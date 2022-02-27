@@ -8,9 +8,10 @@ import { createDynamoDb } from "./dynamodb";
 import { deployApp } from "./deployApp";
 
 const config = new pulumi.Config();
-const githubConnectionId = config.require("github-connection-id");
 
-const codePipeline = createCodePipeline(githubConnectionId);
+// Disable codepipeline for now as it does not work as expected.
+// const githubConnectionId = config.require("github-connection-id");
+// const codePipeline = createCodePipeline(githubConnectionId);
 
 // Build and publish application image.
 const appImage = createAppImage();
@@ -19,7 +20,8 @@ const appImage = createAppImage();
 const dynamoDb = createDynamoDb();
 
 // Deploy application.
-const eksStack = new pulumi.StackReference("macostea/pulumi-eks-stack/dev");
+const eksStackReference = config.require("eks-stack");
+const eksStack = new pulumi.StackReference(eksStackReference);
 const kubeconfig = eksStack.getOutput("kubeconfig");
 const serviceAccountName = eksStack.getOutput("restApiServiceAccount");
 
@@ -31,6 +33,6 @@ const appIngress = deployApp(appImage, k8sProvider, {
     serviceAccountName: serviceAccountName,
 });
 
-export const pipeline = codePipeline.name;
+// export const pipeline = codePipeline.name;
 export const image = appImage.imageName;
 export const appUrl = appIngress.status.loadBalancer.ingress[0].hostname;

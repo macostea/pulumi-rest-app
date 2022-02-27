@@ -47,6 +47,7 @@ export function createCodePipeline(githubConnectionId: string) {
         policyArn: aws.iam.ManagedPolicies.AmazonDynamoDBFullAccess
     });
 
+    // This does not work.
     const eksAccessPolicy = new aws.iam.RolePolicy("eks-access-policy", {
         role: buildRole,
         policy: pulumi.interpolate`{
