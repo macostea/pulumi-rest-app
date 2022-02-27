@@ -46,7 +46,7 @@ async function addTestData() {
             Item: testItem,
         };
 
-        const putItem = await dynamoDb.send(new PutItemCommand(putItemParams));
+        await dynamoDb.send(new PutItemCommand(putItemParams));
         console.log("Test data added");
     }
 }

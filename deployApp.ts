@@ -11,7 +11,7 @@ interface AppConfig {
 
 export function deployApp(image: docker.Image, provider: k8s.Provider, appConfig: AppConfig) {
     const appLabels = { app: "rest-app" };
-    const deployment = new k8s.apps.v1.Deployment("rest-app", {
+    new k8s.apps.v1.Deployment("rest-app", {
         spec: {
             selector: { matchLabels: appLabels },
             replicas: 3,
@@ -77,4 +77,4 @@ export function deployApp(image: docker.Image, provider: k8s.Provider, appConfig
     }, { provider: provider });
 
     return ingress;
-};
+}

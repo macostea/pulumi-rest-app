@@ -14,4 +14,4 @@ export function createDynamoDb() {
     });
 
     return db;
-};
+}

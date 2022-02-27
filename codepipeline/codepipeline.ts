@@ -22,33 +22,33 @@ export function createCodePipeline(githubConnectionId: string) {
         }),
     });
 
-    const buildAccess = new aws.iam.RolePolicyAttachment("codebuild-access", {
+    new aws.iam.RolePolicyAttachment("codebuild-access", {
         role: buildRole,
         policyArn: aws.iam.ManagedPolicies.AWSCodeBuildDeveloperAccess
     });
 
-    const cloudWatchAccess = new aws.iam.RolePolicyAttachment("cloudwatch-access", {
+    new aws.iam.RolePolicyAttachment("cloudwatch-access", {
         role: buildRole,
         policyArn: aws.iam.ManagedPolicies.CloudWatchFullAccess
     });
 
-    const s3Access = new aws.iam.RolePolicyAttachment("s3-access", {
+    new aws.iam.RolePolicyAttachment("s3-access", {
         role: buildRole,
         policyArn: aws.iam.ManagedPolicies.AmazonS3FullAccess
     });
 
-    const ecrAccess = new aws.iam.RolePolicyAttachment("ecr-access", {
+    new aws.iam.RolePolicyAttachment("ecr-access", {
         role: buildRole,
         policyArn: aws.iam.ManagedPolicies.AmazonEC2ContainerRegistryFullAccess
     });
 
-    const dynamoDbAccess = new aws.iam.RolePolicyAttachment("dynamodb-access", {
+    new aws.iam.RolePolicyAttachment("dynamodb-access", {
         role: buildRole,
         policyArn: aws.iam.ManagedPolicies.AmazonDynamoDBFullAccess
     });
 
     // This does not work.
-    const eksAccessPolicy = new aws.iam.RolePolicy("eks-access-policy", {
+    new aws.iam.RolePolicy("eks-access-policy", {
         role: buildRole,
         policy: pulumi.interpolate`{
             "Version": "2012-10-17",
@@ -64,7 +64,7 @@ export function createCodePipeline(githubConnectionId: string) {
             }`,
     });
 
-    const secretAccessPolicy = new aws.iam.RolePolicy("secret-access-policy", {
+    new aws.iam.RolePolicy("secret-access-policy", {
         role: buildRole,
         policy: pulumi.interpolate`{
         "Version": "2012-10-17",
@@ -151,7 +151,7 @@ export function createCodePipeline(githubConnectionId: string) {
         ]
     });
 
-    const pipelineRolePolicy = new aws.iam.RolePolicy("pipeline-role-policy", {
+    new aws.iam.RolePolicy("pipeline-role-policy", {
         role: pipelineRole,
         policy: pulumi.interpolate`{
             "Version": "2012-10-17",
